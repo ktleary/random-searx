@@ -42,14 +42,12 @@ const isGoodInstance = http => {
 	return http && statusOk(http.status_code) && isGoodGrade(http.grade);
 };
 
-function getGoodSearchxInstances(instances) {
-	let goodInstances = keys(instances).reduce(
+const getGoodSearchxInstances = instances =>
+	keys(instances).reduce(
 		(result, key) =>
 			isGoodInstance(instances[key].http) ? [...result, key] : result,
 		[]
 	);
-	return goodInstances;
-}
 
 function main() {
 	fetchHtml(searchxInstancesPage);
