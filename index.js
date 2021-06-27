@@ -1,7 +1,7 @@
+const dev = false;
+const https = dev ? require("http") : require("https");
 const { keys } = Object;
 const print = xo => console.info(xo);
-
-const dev = false;
 
 const searchxInstancesPage = dev
 	? "http://localhost:5000/search-instances.json"
@@ -10,29 +10,28 @@ const searchxInstancesPage = dev
 const randomListItem = list => Math.floor(Math.random() * list.length);
 const getRandomListItem = list => list[randomListItem(list)];
 
-const axios = require("axios");
-const UserAgent = require("user-agents");
-
-const userAgent = UserAgent.random({ userAgent: /Chrome/ });
 const statusOk = status => status > 199 && status < 300;
 
-const fetchHtml = async url => {
-	try {
-		const response = await axios({
-			url: url,
-			headers: {
-				"User-Agent": userAgent,
-			},
-			method: "GET",
+function processInstances(instances) {
+	const goodSearchxInstances = getGoodSearchxInstances(instances);
+	print(getRandomListItem(goodSearchxInstances));
+}
+
+const fetchHtml = url =>
+	https
+		.get(url, res => {
+			let data = "";
+			res.on("data", chunk => {
+				data += chunk;
+			});
+			res.on("end", () => {
+				const { instances } = JSON.parse(data);
+				processInstances(instances);
+			});
+		})
+		.on("error", err => {
+			console.log("Error: ", err.message);
 		});
-		const { data } = response;
-		return data;
-	} catch (error) {
-		const { errno, code, hostname } = error;
-		console.log(`Error processing ${hostname}: ${errno} ${code}.`);
-		return false;
-	}
-};
 
 const isGoodGrade = grade => {
 	if (!grade) return false;
@@ -43,8 +42,7 @@ const isGoodInstance = http => {
 	return http && statusOk(http.status_code) && isGoodGrade(http.grade);
 };
 
-async function getGoodSearchxInstances() {
-	let { instances } = await fetchHtml(searchxInstancesPage);
+function getGoodSearchxInstances(instances) {
 	let goodInstances = keys(instances).reduce(
 		(result, key) =>
 			isGoodInstance(instances[key].http) ? [...result, key] : result,
@@ -53,13 +51,8 @@ async function getGoodSearchxInstances() {
 	return goodInstances;
 }
 
-async function getRandomGoodInstance() {
-	const goodSearchxInstances = await getGoodSearchxInstances();
-	print(getRandomListItem(goodSearchxInstances));
-}
-
 function main() {
-	getRandomGoodInstance();
+	fetchHtml(searchxInstancesPage);
 }
 
 main();
