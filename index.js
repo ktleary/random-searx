@@ -33,14 +33,10 @@ const fetchHtml = url =>
 			console.log("Error: ", err.message);
 		});
 
-const isGoodGrade = grade => {
-	if (!grade) return false;
-	return ["A", "B"].includes(grade.charAt(0));
-};
+const isGoodGrade = grade => grade && ["A", "B"].includes(grade.charAt(0));
 
-const isGoodInstance = http => {
-	return http && statusOk(http.status_code) && isGoodGrade(http.grade);
-};
+const isGoodInstance = http =>
+	http && statusOk(http.status_code) && isGoodGrade(http.grade);
 
 const getGoodSearchxInstances = instances =>
 	keys(instances).reduce(
@@ -49,8 +45,4 @@ const getGoodSearchxInstances = instances =>
 		[]
 	);
 
-function main() {
-	fetchHtml(searchxInstancesPage);
-}
-
-main();
+(() => fetchHtml(searchxInstancesPage))();
