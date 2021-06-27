@@ -1,0 +1,22 @@
+{
+  "name": "rndm_searchx",
+  "version": "0.1.0",
+  "description": "Random SearchX",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "rndm_searchx"
+  },
+  "keywords": [
+    "random",
+    "instance",
+    "searchx",
+    "random",
+    "searchx"
+  ],
+  "author": "djlooop",
+  "license": "GPL-3.0"
+}
