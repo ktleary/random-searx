@@ -1,5 +1,12 @@
 # rndm_searx
 
+This started out as a node script and turned into a rudimentary html page. Feel free to take it and run with it if you want to improve the maintainability.
+
+In the wild: https://stringtalk.org/searx
+
+
+## Details
+
 A node script and complimentary html page to retrieve a random good search index from the searx api.
 
 ## How it works:
