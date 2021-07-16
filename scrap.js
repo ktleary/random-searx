@@ -1,4 +1,4 @@
-const isGoodGrade = grade => grade && ["A", "B"].includes(grade.charAt(0));
+const isGoodGrade = grade => grade && ["A"].includes(grade.charAt(0));
 const randomListItem = list => Math.floor(Math.random() * list.length);
 const getRandomListItem = list => list[randomListItem(list)];
 const print = xo => console.log(xo);

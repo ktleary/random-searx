@@ -1,7 +1,7 @@
 {
   "name": "rndm_searchx",
   "version": "0.1.0",
-  "description": "Random SearchX",
+  "description": "Random SearX",
   "main": "index.js",
   "scripts": {
     "test": "ava"
