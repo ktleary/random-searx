@@ -1,6 +1,6 @@
 # rndm_searchx
 
-A node script to retrieve a random good search index from the api.
+A node script and complimentary html page to retrieve a random good search index from the searx api.
 
 ## How it works:
 
@@ -14,7 +14,11 @@ A node script to retrieve a random good search index from the api.
 1. axios
 2. user-agents
 
-## Installation
+## HTML Installation
+
+- open rndm-searx.html in a location capable of supporting ajax
+
+## Node Installation
 
 - git clone
 - npm install
