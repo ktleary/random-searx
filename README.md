@@ -1,4 +1,4 @@
-# rndm_searchx
+# rndm_searx
 
 A node script and complimentary html page to retrieve a random good search index from the searx api.
 
