@@ -20,10 +20,10 @@
   "author": "djlooop",
   "license": "GPL-3.0",
   "devDependencies": {
-    "eslint": "^7.29.0"
+    "eslint": "^7.31.0"
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "user-agents": "^1.0.696"
+    "user-agents": "^1.0.719"
   }
 }
