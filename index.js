@@ -1,27 +1,27 @@
 const dev = false;
 const https = dev ? require("http") : require("https");
 const { keys } = Object;
-const print = xo => console.info(xo);
+const print = (xo) => console.info(xo);
 
 const searchxInstancesPage = dev
 	? "http://localhost:5000/search-instances.json"
 	: "https://searx.space/data/instances.json";
 
-const randomListItem = list => Math.floor(Math.random() * list.length);
-const getRandomListItem = list => list[randomListItem(list)];
+const randomListItem = (list) => Math.floor(Math.random() * list.length);
+const getRandomListItem = (list) => list[randomListItem(list)];
 
-const statusOk = status => status > 199 && status < 300;
+const statusOk = (status) => status > 199 && status < 300;
 
 function processInstances(instances) {
 	const goodSearchxInstances = getGoodSearchxInstances(instances);
 	print(getRandomListItem(goodSearchxInstances));
 }
 
-const fetchHtml = url =>
+const fetchHtml = (url) =>
 	https
-		.get(url, res => {
+		.get(url, (res) => {
 			let data = "";
-			res.on("data", chunk => {
+			res.on("data", (chunk) => {
 				data += chunk;
 			});
 			res.on("end", () => {
@@ -29,16 +29,16 @@ const fetchHtml = url =>
 				processInstances(instances);
 			});
 		})
-		.on("error", err => {
+		.on("error", (err) => {
 			console.log("Error: ", err.message);
 		});
 
-const isGoodGrade = grade => grade && ["A", "B"].includes(grade.charAt(0));
+const isGoodGrade = (grade) => grade && ["A"].includes(grade.charAt(0));
 
-const isGoodInstance = http =>
+const isGoodInstance = (http) =>
 	http && statusOk(http.status_code) && isGoodGrade(http.grade);
 
-const getGoodSearchxInstances = instances =>
+const getGoodSearchxInstances = (instances) =>
 	keys(instances).reduce(
 		(result, key) =>
 			isGoodInstance(instances[key].http) ? [...result, key] : result,
