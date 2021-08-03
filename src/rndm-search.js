@@ -23,8 +23,8 @@ const getGoodSearchxInstances = (instances) =>
 
 function processInstances(instances) {
 	const goodSearchxInstances = getGoodSearchxInstances(instances);
-	document.location.href = getRandomListItem(goodSearchxInstances);
-	// print(getRandomListItem(goodSearchxInstances));
+	// document.location.href = getRandomListItem(goodSearchxInstances);
+	print(getRandomListItem(goodSearchxInstances));
 }
 
 function redirectRandomSearx() {

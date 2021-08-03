@@ -2,6 +2,9 @@
 
 A simple script to query a searx api monitor stats for instance health and redirect to a healthy site. This helps redistribute the load and narrows down choices from a long list.
 
+![random searx screen](random-searx.png)
+
+
 In the wild: https://stringtalk.org/searx
 
 ## How it works:
